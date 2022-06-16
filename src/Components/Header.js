@@ -4,7 +4,7 @@ class Header extends React.Component {
     render() {
       return (
       <header id="header">
-        <img src="../images/Logo.png" alt="" width="60px" height="46p"></img>
+        <img src="../images/Logo.png" alt="" width="60px" height="46px"></img>
         <h2>PeduliGizi</h2>
         <nav>
           <a href="/#">Home</a>
