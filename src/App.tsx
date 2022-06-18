@@ -1,14 +1,22 @@
 import './App.css';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import Main from './Components/Main';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect
+  } from "react-router-dom";
+import LandingPage from './pages/LandingPage';
 
 function App() {
     return ( 
         <div className='App'>
-            <Header></Header>
-            <Main></Main>
-            <Footer></Footer>
+            <Router>
+                <Switch>
+                    <Route path="/">
+                        <LandingPage />
+                    </Route>
+                </Switch>
+            </Router>
         </div>
     );
 }
