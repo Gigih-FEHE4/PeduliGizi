@@ -5,6 +5,7 @@ import {
     Route
   } from "react-router-dom";
 import LandingPage from './pages/LandingPage';
+import ArticleListPage from './pages/ArticleListPage';
 import Login from './Components/Login';
 
 
@@ -13,10 +14,15 @@ function App() {
         <div className='App'>
             <Router>
                 <Switch>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
+                    <Route path="/article">
+                        <ArticleListPage />
+                    </Route>
                     <Route path="/">
                         <LandingPage />
                     </Route>
-                    <Route path="/login" exact component={Login} />
                 </Switch>
             </Router>
         </div>
