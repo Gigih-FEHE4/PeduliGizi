@@ -2,17 +2,21 @@ import './App.css';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Redirect
+    Route
   } from "react-router-dom";
 import LandingPage from './pages/LandingPage';
 import ArticleListPage from './pages/ArticleListPage';
+import Login from './Components/Login';
+
 
 function App() {
     return ( 
         <div className='App'>
             <Router>
                 <Switch>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
                     <Route path="/article">
                         <ArticleListPage />
                     </Route>
