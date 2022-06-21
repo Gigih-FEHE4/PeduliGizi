@@ -6,6 +6,7 @@ import {
   } from "react-router-dom";
 import LandingPage from './pages/LandingPage';
 import ArticleListPage from './pages/ArticleListPage';
+import ArticleDetailPage from './pages/ArticleDetailPage';
 import Login from './Components/Login';
 
 
@@ -16,6 +17,9 @@ function App() {
                 <Switch>
                     <Route path="/login">
                         <Login />
+                    </Route>
+                    <Route path="/article/:id">
+                        <ArticleDetailPage />
                     </Route>
                     <Route path="/article">
                         <ArticleListPage />
