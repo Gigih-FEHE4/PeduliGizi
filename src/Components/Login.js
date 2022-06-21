@@ -1,77 +1,96 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/jsx-no-undef */
-//...other imports
-import TextField from '@mui/joy/TextField';
-import Button from '@mui/joy/Button';
-import Link from '@mui/joy/Link';
-import React from "react";
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-class Login extends React.Component {
-      render () {
-        return (
-      <login id="login">
-        <section class="courses">
-        </section>
-        <img src="../images/Logo.png" alt="" width="60px" height="46px"></img>
-        <h2>PeduliGizi</h2>
-        <nav>
-          <div class="chevron-down">
-        <i class='bx bx-chevron-down'></i>
-        </div>
-        <section class="login">
-          </section>
-<Sheet
-  variant="outlined"
-  sx={
-    {
-      // ...
-    }
-  }
->
-  ...typography
-  <TextField
-    // html input attribute
-    name="email"
-    type="email"
-    placeholder="johndoe@email.com"
-    // pass down to FormLabel as children
-    label="Email"
-  />
-  <TextField
-    name="password"
-    type="password"
-    placeholder="password"
-    label="Password"
-  />
-</Sheet>;
+const theme = createTheme();
 
-<Sheet
-  variant="outlined"
-  sx={
-    {
-      // ...
-    }
-  }
->
-  ...typography and text-fields
-  <Button
-    sx={{
-      mt: 1, // margin top
-    }}
-  >
-    Log in
-  </Button>
-  <Typography
-    endDecorator={<Link href="/sign-up">Sign up</Link>}
-    fontSize="sm"
-    sx={{ alignSelf: 'center' }}
-  >
-    Don't have an account?
-  </Typography>
-</Sheet>;
-</nav>
-</login>
-      )};
-  }
-  export default Login;
+export default function Login(props) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
+}

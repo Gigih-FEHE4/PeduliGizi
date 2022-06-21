@@ -2,10 +2,11 @@ import './App.css';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Redirect
+    Route
   } from "react-router-dom";
 import LandingPage from './pages/LandingPage';
+import Login from './Components/Login';
+
 
 function App() {
     return ( 
@@ -15,6 +16,7 @@ function App() {
                     <Route path="/">
                         <LandingPage />
                     </Route>
+                    <Route path="/login" exact component={Login} />
                 </Switch>
             </Router>
         </div>

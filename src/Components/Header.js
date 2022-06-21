@@ -10,12 +10,11 @@ class Header extends React.Component {
         <img src="../images/Logo.png" alt="" width="60px" height="46px"></img>
         <h2>PeduliGizi</h2>
         <nav>
-          <a href="/#">Home</a>
-          <a href="/#">News</a>
-          <a href="/#">Category</a>
-          <a href="/#">About</a>
-          <a href="/#">Sign In</a>
-          <a class="signup" href="/#"><p>Sign Up</p></a>
+          <a href="/">Halaman Utama</a>
+          <a href="/#">Kategori</a>
+          <a href="/#">Tentang</a>
+          <a> <Link to="/login">Masuk</Link></a>
+          <a class="signup" href="/#"><p>Daftar</p></a>
           
         </nav>
       </header>
