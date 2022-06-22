@@ -14,7 +14,7 @@ class Header extends React.Component {
           <a href="/#">Kategori</a>
           <a href="/#">Tentang</a>
           <a> <Link to="/login">Masuk</Link></a>
-          <a class="signup" href="/#"><p>Daftar</p></a>
+          <a class="signup" href="/signup"><p>Daftar</p></a>
           
         </nav>
       </header>

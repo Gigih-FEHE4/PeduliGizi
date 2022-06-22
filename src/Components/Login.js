@@ -12,10 +12,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Header from "./Header";
+import LoginHooks from './LoginHooks';
 
 const theme = createTheme();
 
-export default function Login(props) {
+export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -27,6 +29,8 @@ export default function Login(props) {
 
   return (
     <ThemeProvider theme={theme}>
+      <Header />
+   
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -35,21 +39,22 @@ export default function Login(props) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            
+            
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+            <hr size="3%" width="100%"/>
+         
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email"
               name="email"
               autoComplete="email"
               autoFocus
@@ -72,7 +77,10 @@ export default function Login(props) {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2,
+              background: "#FF4D4D",
+              boxShadow: "1px 17px 44px rgba(3, 2, 41, 0.07)",
+              borderRadius: "40px"}}
             >
               Sign In
             </Button>
@@ -91,6 +99,7 @@ export default function Login(props) {
           </Box>
         </Box>
       </Container>
+      <LoginHooks />
     </ThemeProvider>
   );
 }
