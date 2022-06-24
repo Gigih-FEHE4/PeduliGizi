@@ -17,6 +17,8 @@ import { Email } from '@mui/icons-material';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase';
 import { useHistory } from 'react-router-dom';
+import Header from './Header';
+import SignupHooks from './SignupHooks';
 
 const theme = createTheme();
 
@@ -49,6 +51,7 @@ export default function SignUp(props) {
 
   return (
     <ThemeProvider theme={theme}>
+       <Header />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -59,12 +62,11 @@ export default function SignUp(props) {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
+  
           <Typography component="h1" variant="h5">
-            Sign up
+            Sign Up
           </Typography>
+            <hr size="3%" width="100%"/>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -128,7 +130,10 @@ export default function SignUp(props) {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2,
+                background: "#FF4D4D",
+                boxShadow: "1px 17px 44px rgba(3, 2, 41, 0.07)",
+                borderRadius: "40px"}}
             >
               Sign Up
             </Button>
@@ -142,6 +147,7 @@ export default function SignUp(props) {
           </Box>
         </Box>
       </Container>
+      <SignupHooks />
     </ThemeProvider>
   );
 }

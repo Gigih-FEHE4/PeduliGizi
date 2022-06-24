@@ -7,7 +7,7 @@ class Main extends React.Component {
   <div class="hero-text">
     <h1>Website Informasi Gizi Ibu dan Anak untuk Mencegah Stunting</h1>
     
-    <a href="/#">Selengkapnya</a>
+    <a href="/login">Selengkapnya</a>
   </div>
 </div>
 
