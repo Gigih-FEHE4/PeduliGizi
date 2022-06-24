@@ -14,10 +14,17 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from "./Header";
 import LoginHooks from './LoginHooks';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
+import {useState} from 'react';
+import { useHistory } from 'react-router-dom';
 
 const theme = createTheme();
 
 export default function Login() {
+  const history=useHistory()
+  const[email,setEmail]=useState('')
+  const[password,setPassword]=useState('')
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -25,6 +32,15 @@ export default function Login() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    signInWithEmailAndPassword(auth,email,password)
+    .then((userAuth)=>{
+      console.log(userAuth)
+      alert('login succes')
+      history.push('/article')
+    })
+    .catch((err)=>{
+      alert(err)
+    })
   };
 
   return (
@@ -58,6 +74,9 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
+
             />
             <TextField
               margin="normal"
@@ -68,6 +87,8 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

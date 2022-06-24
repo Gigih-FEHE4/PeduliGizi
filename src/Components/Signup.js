@@ -12,10 +12,20 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {useState} from 'react';
+import { Email } from '@mui/icons-material';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from '../firebase';
+import { useHistory } from 'react-router-dom';
 
 const theme = createTheme();
 
 export default function SignUp(props) {
+  const history=useHistory()
+  const [lastName,setLastName]=useState('')
+  const [firstName,setFirstName]=useState('')
+  const [email,setEmail]=useState('')
+  const [password,setPassword]=useState('')
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -23,6 +33,18 @@ export default function SignUp(props) {
       email: data.get('email'),
       password: data.get('password'),
     });
+    createUserWithEmailAndPassword(auth,email,password)
+    .then((authUser)=>{
+      updateProfile(auth.currentUser,{
+        displayName:`${firstName} ${lastName}`
+      })
+      console.log(auth.currentUser)
+      alert(`hallo ${firstName}${lastName}`)
+      history.push('/login')
+    })
+    .catch((err)=>{
+      alert(err)
+    })
   };
 
   return (
@@ -54,6 +76,8 @@ export default function SignUp(props) {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  value={firstName}
+                  onChange={(e)=>setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -64,6 +88,8 @@ export default function SignUp(props) {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  value={lastName}
+                  onChange={(e)=>setLastName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -74,6 +100,8 @@ export default function SignUp(props) {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e)=>setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -85,6 +113,8 @@ export default function SignUp(props) {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={password}
+                  onChange={(e)=>setPassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -104,7 +134,7 @@ export default function SignUp(props) {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
