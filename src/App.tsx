@@ -9,6 +9,8 @@ import ArticleListPage from './pages/ArticleListPage';
 import ArticleDetailPage from './pages/ArticleDetailPage';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+import MenuDetailPage from './pages/MenuDetailPage';
+import MenuByType from './pages/MenuByType';
 import DaftarMenu from './pages/DaftarMenu';
 
 function App() {
@@ -27,6 +29,12 @@ function App() {
                     </Route>
                     <Route path="/article">
                         <ArticleListPage />
+                    </Route>
+                    <Route path="/menu/type/:type">
+                        <MenuByType />
+                    </Route>
+                    <Route path="/menu/:id">
+                        <MenuDetailPage />
                     </Route>
                     <Route path="/daftar-menu">
                         <DaftarMenu />
