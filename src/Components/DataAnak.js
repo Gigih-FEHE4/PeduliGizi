@@ -29,99 +29,80 @@ export default function dataanak(props) {
             minggu_kelahiran_anak_lahir: data.get('minggu kelahiran anak lahir'),
         });
     };
-
-    return ( <
-        ThemeProvider theme = { theme } >
-        <
+    function App() {
+    return ( 
+        <ThemeProvider theme = {theme}>
         Container component = "login"
-        maxWidth = "xs" >
-        <
-        CssBaseline / >
-        <
-        Box sx = {
+        maxWidth = "xs"
+        <CssBaseline/>
+        <Box sx = {
             {
                 marginTop: 8,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
             }
-        } >
-        <
-        Avatar sx = {
+        }>
+        <Avatar sx = {
             { m: 1, bgcolor: 'secondary.login' }
-        } >
-        <
-        LockOutlinedIcon / >
-        <
-        /Avatar> <
-        Typography component = "h1"
+        }>
+        <LockOutlinedIcon / >
+        </Avatar> 
+        <Typography component = "h1"
         variant = "h5" >
-        Data Anak <
-        /Typography> <
-        Box component = "form"
+        Data Anak 
+        </Typography> 
+        <Box component = "form"
         onSubmit = { handleSubmit }
         noValidate sx = {
             { mt: 1 }
-        } >
-
+        }>
         TextField margin = "normal"
         required fullWidth id = "nama"
         label = "Nama Anak"
         name = "nama"
         autoComplete = "nama"
-        autoFocus /
-        >
-        <
-        TextField margin = "normal"
+        autoFocus
+        <TextField margin = "normal"
         required fullWidth name = "tanggal lahir"
         label = "Tanggal Lahir Anak"
         type = "tanggal lahir"
         id = "tanggal lahir"
-        autoComplete = "tanggal lahir" /
-        >
-        <
-        TextField margin = "normal"
+        autoComplete = "tanggal lahir" />
+        <TextField margin = "normal"
         required fullWidth name = "jenis kelamin"
         label = "Jenis Kelamin Anak"
         type = "jenis kelamin"
         id = "jenis kelamin"
-        autoComplete = "jenis kelamin" /
-        >
-        <
-        TextField margin = "normal"
+        autoComplete = "jenis kelamin" 
+        />
+        <TextField margin = "normal"
         required fullWidth name = "minggu kelahiran anak lahir"
         label = "Minggu Kelahiran Anak Lahir"
         type = "minggu kelahiran anak lahir"
         id = "minggu kelahiran anak lahir"
-        autoComplete = "minggu kelahiran anak lahir" /
-        >
-        <
-        FormControlLabel control = { < Checkbox value = "remember"
-            color = "primary" / >
+        autoComplete = "minggu kelahiran anak lahir"/>
+        <FormControlLabel control = { 
+        <Checkbox value = "remember"
+            color = "primary"/>
         }
-        label = "Remember me" /
-        >
-        <
-        Button type = "tambah"
+        label = "Remember me"/>
+        <Button type = "tambah"
         fullWidth variant = "contained"
         sx = {
             { mt: 3, mb: 2 }
-        } >
-        Tambah <
-        /Button> <
-        Grid container >
-        <
-        Grid item xs >
-        <
-        Link href = "#"
-        variant = "body2" >
-        <
-        /Link> < /
-        Grid > <
-        /Grid> < /
-        Box > <
-        /Box> < /
-        Container > <
-        /ThemeProvider>
-    );
-}
+        }>
+        Tambah 
+        </Button> 
+        <Grid container>
+        <Grid item xs>
+        <Link href = "#"
+        variant = "body2">
+        </Link> 
+        </Grid>; 
+        <gt>;
+        </gt>
+        </Grid>; 
+        </Box> 
+        </Box> 
+        </ThemeProvider>
