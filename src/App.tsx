@@ -9,6 +9,8 @@ import ArticleListPage from './pages/ArticleListPage';
 import ArticleDetailPage from './pages/ArticleDetailPage';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+import MenuDetail from './pages/MenuDetail';
+import MenuByType from './pages/MenuByType';
 
 function App() {
     return ( 
@@ -26,6 +28,12 @@ function App() {
                     </Route>
                     <Route path="/article">
                         <ArticleListPage />
+                    </Route>
+                    <Route path="/menu/type/:type">
+                        <MenuByType />
+                    </Route>
+                    <Route path="/menu/:id">
+                        <MenuDetail />
                     </Route>
                     <Route path="/">
                         <LandingPage />
