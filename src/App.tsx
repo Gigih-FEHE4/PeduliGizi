@@ -1,6 +1,6 @@
 import './App.css';
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route
   } from "react-router-dom";
@@ -9,7 +9,9 @@ import ArticleListPage from './pages/ArticleListPage';
 import ArticleDetailPage from './pages/ArticleDetailPage';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
-import DaftarMenu from './pages/DaftarMenu';
+import MenuDetailPage from './pages/MenuDetailPage';
+import MenuByType from './pages/MenuByType';
+import MenuPage from './pages/MenuPage';
 
 function App() {
     return ( 
@@ -28,8 +30,14 @@ function App() {
                     <Route path="/article">
                         <ArticleListPage />
                     </Route>
-                    <Route path="/daftar-menu">
-                        <DaftarMenu />
+                    <Route path="/menu/type/:type">
+                        <MenuByType />
+                    </Route>
+                    <Route path="/menu/:id">
+                        <MenuDetailPage />
+                    </Route>
+                    <Route path="/menupage">
+                        <MenuPage />
                     </Route>
                     <Route path="/">
                         <LandingPage />
