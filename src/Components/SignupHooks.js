@@ -8,7 +8,7 @@ import '../App.css';
 const clientId =
 'YOUR_CLIENT_ID.apps.googleusercontent.com';
 
-function LoginHooks() {
+function SignupHooks() {
   const onSuccess = (res) => {
     console.log('Login Success: currentUser:', res.profileObj);
     alert(
@@ -24,7 +24,7 @@ function LoginHooks() {
     );
   };
 
-  const { signIn } = useGoogleLogin({
+  const { signup } = useGoogleLogin({
     onSuccess,
     onFailure,
     clientId,
@@ -35,12 +35,12 @@ function LoginHooks() {
   });
 
   return (
-    <button onClick={signIn} className="button">
+    <button onClick={signup} className="button">
       <img src="icons/google.svg" alt="google login" className="icon"></img>
 
-      <span className="buttonText">Sign in with Google</span>
+      <span className="buttonText">Sign up with Google</span>
     </button>
   );
 }
 
-export default LoginHooks;
+export default SignupHooks;
