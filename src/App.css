@@ -215,3 +215,7 @@ border-radius: 10px;
   left: 30px;
   align-items: center;
 }
+.content{
+  text-align: justify;
+  white-space: pre-wrap;
+}
