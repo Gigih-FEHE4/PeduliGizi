@@ -2,7 +2,7 @@ import Header from '../Components/Header'
 import { Container } from '@mui/material'
 import { useParams } from 'react-router-dom'
 
-const MenuDetail = () => {
+const MenuDetailPage = () => {
   const dummyData = {
     title: "Pure Pisang",
     bahan: [
@@ -54,4 +54,4 @@ const MenuDetail = () => {
   )
 }
 
-export default MenuDetail
+export default MenuDetailPage

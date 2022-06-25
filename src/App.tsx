@@ -9,8 +9,9 @@ import ArticleListPage from './pages/ArticleListPage';
 import ArticleDetailPage from './pages/ArticleDetailPage';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
-import MenuDetail from './pages/MenuDetail';
+import MenuDetailPage from './pages/MenuDetailPage';
 import MenuByType from './pages/MenuByType';
+import DaftarMenu from './pages/DaftarMenu';
 
 function App() {
     return ( 
@@ -33,7 +34,10 @@ function App() {
                         <MenuByType />
                     </Route>
                     <Route path="/menu/:id">
-                        <MenuDetail />
+                        <MenuDetailPage />
+                    </Route>
+                    <Route path="/daftar-menu">
+                        <DaftarMenu />
                     </Route>
                     <Route path="/">
                         <LandingPage />

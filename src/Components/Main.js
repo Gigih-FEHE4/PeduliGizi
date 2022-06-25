@@ -5,9 +5,9 @@ class Main extends React.Component {
         return <main id="main"> 
 <div class="hero-image">
   <div class="hero-text">
-    <h1>Nutrition Information Website for Mother and Children to Prevent Stunting</h1>
+    <h1>Website Informasi Gizi Ibu dan Anak untuk Mencegah Stunting</h1>
     
-    <a href="/#">Selengkapnya</a>
+    <a href="/login">Selengkapnya</a>
   </div>
 </div>
 
