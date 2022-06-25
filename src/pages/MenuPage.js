@@ -1,7 +1,7 @@
 import React from "react";
 import Header from '../Components/Header'
 
-class DaftarMenu extends React.Component {
+class MenuPage extends React.Component {
     item(pathImage,title,desc){
         return (
             <>
@@ -88,4 +88,4 @@ class DaftarMenu extends React.Component {
     }
 }
 
-export default DaftarMenu;
+export default MenuPage;

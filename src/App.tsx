@@ -11,7 +11,7 @@ import Login from './Components/Login';
 import Signup from './Components/Signup';
 import MenuDetailPage from './pages/MenuDetailPage';
 import MenuByType from './pages/MenuByType';
-import DaftarMenu from './pages/DaftarMenu';
+import MenuPage from './pages/MenuPage';
 
 function App() {
     return ( 
@@ -36,8 +36,8 @@ function App() {
                     <Route path="/menu/:id">
                         <MenuDetailPage />
                     </Route>
-                    <Route path="/daftar-menu">
-                        <DaftarMenu />
+                    <Route path="/menupage">
+                        <MenuPage />
                     </Route>
                     <Route path="/">
                         <LandingPage />
