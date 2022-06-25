@@ -29,11 +29,10 @@ export default function dataanak(props) {
             minggu_kelahiran_anak_lahir: data.get('minggu kelahiran anak lahir'),
         });
     };
-    function App() {
     return ( 
         <ThemeProvider theme = {theme}>
-        Container component = "login"
-        maxWidth = "xs"
+        <Container component = "login"
+        maxWidth = "xs"/>
         <CssBaseline/>
         <Box sx = {
             {
@@ -46,10 +45,10 @@ export default function dataanak(props) {
         <Avatar sx = {
             { m: 1, bgcolor: 'secondary.login' }
         }>
-        <LockOutlinedIcon / >
+        <LockOutlinedIcon />
         </Avatar> 
         <Typography component = "h1"
-        variant = "h5" >
+        variant = "h5">
         Data Anak 
         </Typography> 
         <Box component = "form"
@@ -57,18 +56,18 @@ export default function dataanak(props) {
         noValidate sx = {
             { mt: 1 }
         }>
-        TextField margin = "normal"
+        <TextField margin = "normal"
         required fullWidth id = "nama"
         label = "Nama Anak"
         name = "nama"
         autoComplete = "nama"
-        autoFocus
+        autoFocus/>
         <TextField margin = "normal"
         required fullWidth name = "tanggal lahir"
         label = "Tanggal Lahir Anak"
         type = "tanggal lahir"
         id = "tanggal lahir"
-        autoComplete = "tanggal lahir" />
+        autoComplete = "tanggal lahir"/>
         <TextField margin = "normal"
         required fullWidth name = "jenis kelamin"
         label = "Jenis Kelamin Anak"
@@ -99,10 +98,11 @@ export default function dataanak(props) {
         <Link href = "#"
         variant = "body2">
         </Link> 
-        </Grid>; 
-        <gt>;
+        </Grid> 
+        <gt>
         </gt>
-        </Grid>; 
+        </Grid> 
         </Box> 
-        </Box> 
+        </Box>
         </ThemeProvider>
+        )};
