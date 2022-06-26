@@ -215,3 +215,104 @@ border-radius: 10px;
   left: 30px;
   align-items: center;
 }
+
+#description {
+position: absolute;
+width: 1194px;
+height: 193px;
+left: 0px;
+top: 1063px;
+
+background: rgba(255, 77, 77, 0.85);
+}
+
+#description h2{
+  position: absolute;
+width: 137px;
+height: 42px;
+left: 108px;
+top: 1099px;
+
+font-family: 'EB Garamond';
+font-style: normal;
+font-weight: 600;
+font-size: 32px;
+line-height: 42px;
+/* identical to box height */
+
+
+color: #0C3A2D;
+
+}
+
+#description h3{
+  position: absolute;
+width: 162px;
+height: 33px;
+left: 391px;
+top: 1077px;
+
+font-family: 'EB Garamond';
+font-style: normal;
+font-weight: 600;
+font-size: 25px;
+line-height: 33px;
+/* identical to box height */
+
+
+color: #000000;
+}
+
+#description h4{
+  position: absolute;
+width: 519px;
+height: 26px;
+
+font-family: 'EB Garamond';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 26px;
+/* identical to box height */
+
+
+color: #000000;
+
+}
+
+#description h5{
+  position: absolute;
+width: 88px;
+height: 33px;
+left: 739px;
+top: 1077px;
+
+font-family: 'EB Garamond';
+font-style: normal;
+font-weight: 600;
+font-size: 25px;
+line-height: 33px;
+/* identical to box height */
+
+
+color: #000000;
+}
+
+#description h6{
+  position: absolute;
+width: 101px;
+height: 33px;
+left: 1034px;
+top: 1123px;
+
+font-family: 'EB Garamond';
+font-style: normal;
+font-weight: 600;
+font-size: 25px;
+line-height: 33px;
+/* identical to box height */
+
+
+color: #0C3A2D;
+
+}

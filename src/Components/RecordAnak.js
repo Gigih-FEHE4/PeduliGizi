@@ -18,15 +18,15 @@ import LoginHooks from './LoginHooks';
 
 const theme = createTheme();
 
-export default function dataanak(props) {
+export default function recordanak(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
-            nama: data.get('nama'),
-            tanggal_lahir: data.get('tanggal lahir'),
-            jenis_kelamin: data.get('jenis kelamin'),
-            minggu_kelahiran_anak_lahir: data.get('minggu kelahiran anak lahir'),
+            tanggal_cek_anak: data.get('tanggal cek anak'),
+            tinggi_anak: data.get('tinggi anak'),
+            berat_badan_anak: data.get('berat badan anak'),
+            lingkar_kepala_anak: data.get('lingkar kepala anak'),
         });
     };
     return ( 
@@ -49,7 +49,7 @@ export default function dataanak(props) {
         </Avatar> 
         <Typography component = "h1"
         variant = "h5">
-        Data Anak 
+        Record Anak 
         </Typography> 
         <Box component = "form"
         onSubmit = { handleSubmit }
@@ -57,30 +57,30 @@ export default function dataanak(props) {
             { mt: 1 }
         }>
         <TextField margin = "normal"
-        required fullWidth id = "nama"
-        label = "Nama Anak"
-        name = "nama"
-        autoComplete = "nama"
+        required fullWidth id = "tanggal lahir"
+        label = "Tanggal Cek Anak"
+        name = "tanggal cek"
+        autoComplete = "tanggal cek"
         autoFocus/>
         <TextField margin = "normal"
-        required fullWidth name = "tanggal lahir"
-        label = "Tanggal Lahir Anak"
-        type = "tanggal lahir"
-        id = "tanggal lahir"
-        autoComplete = "tanggal lahir"/>
+        required fullWidth name = "tinggi anak"
+        label = "Tinggi Anak"
+        type = "tinggi anak"
+        id = "tinggi anak"
+        autoComplete = "tinggi anak"/>
         <TextField margin = "normal"
-        required fullWidth name = "jenis kelamin"
-        label = "Jenis Kelamin Anak"
-        type = "jenis kelamin"
-        id = "jenis kelamin"
-        autoComplete = "jenis kelamin" 
+        required fullWidth name = "berat badan"
+        label = "Berat Badan Anak"
+        type = "berat badan"
+        id = "berat badan"
+        autoComplete = "berat badan" 
         />
         <TextField margin = "normal"
-        required fullWidth name = "minggu kelahiran anak lahir"
-        label = "Minggu Kelahiran Anak Lahir"
-        type = "minggu kelahiran anak lahir"
-        id = "minggu kelahiran anak lahir"
-        autoComplete = "minggu kelahiran anak lahir"/>
+        required fullWidth name = "lingkar kepala anak"
+        label = "Lingkar Kepala Anak"
+        type = "lingkar kepala anak"
+        id = "lingkar kepala anak"
+        autoComplete = "lingkar kepala anak"/>
         <FormControlLabel control = { 
         <Checkbox value = "remember"
             color = "primary"/>
