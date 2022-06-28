@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import './App.css';
 import {
     HashRouter as Router,
@@ -9,9 +11,11 @@ import ArticleListPage from './pages/ArticleListPage';
 import ArticleDetailPage from './pages/ArticleDetailPage';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+import DataAnak from './Components/DataAnak';
 import MenuDetailPage from './pages/MenuDetailPage';
 import MenuByType from './pages/MenuByType';
 import MenuPage from './pages/MenuPage';
+import RecordAnak from './Components/RecordAnak';
 
 function App() {
     return ( 
@@ -23,6 +27,12 @@ function App() {
                     </Route>
                     <Route path="/login">
                         <Login />
+                    </Route>
+                    <Route path="/dataanak">
+                        <DataAnak />
+                    </Route>
+                    <Route path="/recordanak">
+                        <RecordAnak />
                     </Route>
                     <Route path="/article/:id">
                         <ArticleDetailPage />
