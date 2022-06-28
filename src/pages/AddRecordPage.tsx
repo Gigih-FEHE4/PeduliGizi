@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,19 +13,31 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { useHistory } from 'react-router-dom';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../firebase';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 const theme = createTheme();
 
-const RecordAnakPage = () => {
-    const handleSubmit = (event: { preventDefault: () => void; currentTarget: HTMLFormElement | undefined; }) => {
+const AddRecordPage = () => {
+    const history = useHistory()
+    const id = useSelector((state: RootState) => state.id)
+    const [date, setDate] = useState('')
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            tanggal_cek_anak: data.get('tanggal cek anak'),
-            tinggi_anak: data.get('tinggi anak'),
-            berat_badan_anak: data.get('berat badan anak'),
-            lingkar_kepala_anak: data.get('lingkar kepala anak'),
-        });
+        const docRef = await addDoc(collection(db, `children/${id}/histories`), {
+            date: date,
+            height: data.get('height'),
+            weight: data.get('weight'),
+            head: data.get('head'),
+        })
+
+        history.push(`/child/${id}`)
     };
     return ( 
         <ThemeProvider theme = {theme}>
@@ -36,38 +48,44 @@ const RecordAnakPage = () => {
                     <LockOutlinedIcon />
                 </Avatar> 
                 <Typography component = "h1" variant = "h5">
-                    Record Anak 
+                    Tambah Record Anak 
                 </Typography> 
                 <Box component = "form" onSubmit = { handleSubmit } noValidate sx={{ mt: 1 }}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            label="Pilih Tanggal Pengecekan"
+                            value={date}
+                            onChange={(newDate) => {
+                                setDate(newDate ?? "")
+                            }}
+                            renderInput={(params) => <TextField fullWidth sx = {{ mt: 1 }} {...params} />}
+                        />
+                    </LocalizationProvider>
                     <TextField margin = "normal"
-                        required fullWidth id = "tanggal lahir"
-                        label = "Tanggal Cek Anak"
-                        name = "tanggal cek"
-                        autoComplete = "tanggal cek"
-                        autoFocus/>
-                    <TextField margin = "normal"
-                        required fullWidth name = "tinggi anak"
+                        required fullWidth 
+                        name = "height"
                         label = "Tinggi Anak"
-                        type = "tinggi anak"
-                        id = "tinggi anak"
+                        type = "number"
+                        id = "height"
                         autoComplete = "tinggi anak"/>
                     <TextField margin = "normal"
-                        required fullWidth name = "berat badan"
+                        required fullWidth 
+                        name = "weight"
                         label = "Berat Badan Anak"
-                        type = "berat badan"
-                        id = "berat badan"
+                        type = "number"
+                        id = "weight"
                         autoComplete = "berat badan" 
                     />
                     <TextField margin = "normal"
-                        required fullWidth name = "lingkar kepala anak"
+                        required fullWidth 
+                        name = "head"
                         label = "Lingkar Kepala Anak"
-                        type = "lingkar kepala anak"
-                        id = "lingkar kepala anak"
+                        type = "number"
+                        id = "head"
                         autoComplete = "lingkar kepala anak"/>
-                    <FormControlLabel control = { <Checkbox value="remember" color="primary"/> } label = "Remember me"/>
-                    <Button type = "tambah" href="#" fullWidth variant = "contained" sx = {{ mt: 3, mb: 2 }}>
+                    <Button type="submit" fullWidth variant="contained" sx = {{ mt: 3, mb: 2 }}>
                         Tambah 
-                    </Button> 
+                    </Button>
                     <Grid container>
                         <Grid item xs>
                             <Link href = "#"
@@ -80,4 +98,4 @@ const RecordAnakPage = () => {
         </ThemeProvider>
     )};
 
-export default RecordAnakPage
+export default AddRecordPage

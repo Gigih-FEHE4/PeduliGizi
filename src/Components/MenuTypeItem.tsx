@@ -1,10 +1,13 @@
+import { Link } from "@mui/material"
+import { Link as RouterLink } from "react-router-dom"
 interface MenuTypeItemProps {
     pathImage: string, 
     title: string, 
-    desc: string
+    desc: string,
+    path: string
 }
 
-const MenuTypeItem = ({ pathImage, title, desc }: MenuTypeItemProps) => {
+const MenuTypeItem = ({ pathImage, title, desc, path }: MenuTypeItemProps) => {
     return (
         <>
         <li style={{
@@ -39,12 +42,14 @@ const MenuTypeItem = ({ pathImage, title, desc }: MenuTypeItemProps) => {
                 }}>
                     {desc}
                 </p>
-                <a href="#" style={{
-                    margin:"auto 0 5px auto",
-                    textDecoration:"none",
-                    fontStyle: "italic",
-                    fontSize: "14px",
-                }}>Pelajari Selengkapnya</a>
+                <Link 
+                    to={`/menu/type/${path}`} 
+                    component={RouterLink} 
+                    underline="hover" 
+                    sx={{margin: "auto 0 5px auto", fontStyle: "italic", fontSize: "14px"}}
+                >
+                    Pelajari Selengkapnya
+                </Link>
             </div>
         </li>
         </>

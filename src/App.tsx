@@ -11,12 +11,12 @@ import ArticleListPage from './pages/ArticleListPage';
 import ArticleDetailPage from './pages/ArticleDetailPage';
 import Login from './pages/LoginPage';
 import Signup from './pages/SignupPage';
-import DataAnak from './pages/DataAnakPage';
+import AddChildPage from './pages/AddChildPage';
 import MenuDetailPage from './pages/MenuDetailPage';
 import MenuByTypePage from './pages/MenuByTypePage';
 import ChildDetailPage from './pages/ChildDetailPage';
 import MenuPage from './pages/MenuPage';
-import RecordAnak from './pages/RecordAnakPage';
+import AddRecordPage from './pages/AddRecordPage';
 import HomePage from './pages/HomePage';
 
 function App() {
@@ -33,20 +33,20 @@ function App() {
                     <Route path="/home">
                         <HomePage />
                     </Route>
-                    <Route path="/dataanak">
-                        <DataAnak />
+                    <Route path="/child/add-record">
+                        <AddRecordPage />
                     </Route>
-                    <Route path="/recordanak">
-                        <RecordAnak />
+                    <Route path="/child/add">
+                        <AddChildPage />
+                    </Route>
+                    <Route path="/child/:id">
+                        <ChildDetailPage />
                     </Route>
                     <Route path="/article/:id">
                         <ArticleDetailPage />
                     </Route>
                     <Route path="/article">
                         <ArticleListPage />
-                    </Route>
-                    <Route path="/child/:id">
-                        <ChildDetailPage />
                     </Route>
                     <Route path="/menu/type/:type">
                         <MenuByTypePage />

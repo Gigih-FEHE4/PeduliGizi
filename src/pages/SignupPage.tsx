@@ -20,33 +20,36 @@ import { useHistory } from 'react-router-dom';
 import Header from '../Components/Header';
 import SignupHooks from '../hooks/SignupHooks';
 
-const theme = createTheme();
-
 export default function SignUp() {
-  const history=useHistory()
-  const [lastName,setLastName]=useState('')
-  const [firstName,setFirstName]=useState('')
-  const [email,setEmail]=useState('')
-  const [password,setPassword]=useState('')
-  const handleSubmit = (event: { preventDefault: () => void; currentTarget: HTMLFormElement | undefined; }) => {
+  const theme = createTheme();
+  const history = useHistory()
+  const [lastName, setLastName] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
+    
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
-    createUserWithEmailAndPassword(auth,email,password)
-    .then((authUser: UserCredential)=>{
-      if (auth.currentUser != null) {
-        updateProfile(auth.currentUser,{
-          displayName:`${firstName} ${lastName}`
-        })
-      }
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((authUser: UserCredential) => {
+        if (auth.currentUser != null) {
+          updateProfile(auth.currentUser, {
+            displayName:`${firstName} ${lastName}`
+          })
+        }
+
       console.log(auth.currentUser)
       alert(`hallo ${firstName}${lastName}`)
-      history.push('/login')
-    })
-    .catch((err)=>{
+      history.push('/child/add')
+    }).catch((err)=>{
       alert(err)
     })
   };
@@ -66,7 +69,7 @@ export default function SignUp() {
         >
   
           <Typography component="h1" variant="h5">
-            Sign Up
+            Daftar Akun
           </Typography>
             <hr/>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -78,7 +81,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  label="Nama Depan"
                   autoFocus
                   value={firstName}
                   onChange={(e)=>setFirstName(e.target.value)}
@@ -89,7 +92,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
+                  label="Nama Belakang"
                   name="lastName"
                   autoComplete="family-name"
                   value={lastName}
@@ -101,7 +104,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="Alamat Email"
                   name="email"
                   autoComplete="email"
                   value={email}
@@ -121,12 +124,6 @@ export default function SignUp() {
                   onChange={(e)=>setPassword(e.target.value)}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -137,12 +134,12 @@ export default function SignUp() {
                 boxShadow: "1px 17px 44px rgba(3, 2, 41, 0.07)",
                 borderRadius: "40px"}}
             >
-              Sign Up
+              Daftar
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/login" variant="body2">
-                  Already have an account? Sign in
+                  Sudah punya akun? Masuk
                 </Link>
               </Grid>
             </Grid>
