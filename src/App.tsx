@@ -17,6 +17,7 @@ import MenuByTypePage from './pages/MenuByTypePage';
 import ChildDetailPage from './pages/ChildDetailPage';
 import MenuPage from './pages/MenuPage';
 import RecordAnak from './Components/RecordAnak';
+import HomePage from './pages/HomePage';
 
 function App() {
     return ( 
@@ -28,6 +29,9 @@ function App() {
                     </Route>
                     <Route path="/login">
                         <Login />
+                    </Route>
+                    <Route path="/home">
+                        <HomePage />
                     </Route>
                     <Route path="/dataanak">
                         <DataAnak />
@@ -50,7 +54,7 @@ function App() {
                     <Route path="/menu/:id">
                         <MenuDetailPage />
                     </Route>
-                    <Route path="/menupage">
+                    <Route path="/menu">
                         <MenuPage />
                     </Route>
                     <Route path="/">

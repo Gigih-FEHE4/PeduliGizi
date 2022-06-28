@@ -133,55 +133,60 @@ const ChildDetailPage = () => {
     
     return [
       {
-        label: `${type} SD -2`,
+        label: `SD -2`,
         data: neg2,
         fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        pointRadius: 0,
+        borderColor: 'rgb(237, 28, 36)',
         tension: 0.1
       },
       {
-        label: `${type} SD -1`,
+        label: `SD -1`,
         data: neg1,
         fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        pointRadius: 0,
+        borderColor: 'rgb(250, 253, 15)',
         tension: 0.1
       },
       {
-        label: `${type} Normal`,
+        label: `Normal`,
         data: normal,
         fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        pointRadius: 0,
+        borderColor: 'rgb(50,205,50)',
         tension: 0.1
       },
       {
-        label: `${type} SD +1`,
+        label: `SD +1`,
         data: plus1,
         fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        pointRadius: 0,
+        borderColor: 'rgb(250, 253, 15)',
         tension: 0.1
       },
       {
-        label: `${type} SD +2`,
+        label: `SD +2`,
         data: plus2,
         fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        pointRadius: 0,
+        borderColor: 'rgb(237, 28, 36)',
         tension: 0.1
       }
     ]
   }
 
   const dummyDataTinggi = {
-    labels: [1,2,3,4,5,6, 7],
+    labels: [1,2,3,4,5,6,7,8,9,10,11,12,13],
     datasets: getData("tinggi", true)
   };
 
   const dummyDataBerat = {
-    labels: [1,2,3,4,5,6, 7],
+    labels: [1,2,3,4,5,6,7,8,9,10,11,12,13],
     datasets: getData("berat", true)
   };
 
   const dummyDataKepala = {
-    labels: [1,2,3,4,5,6, 7],
+    labels: [1,2,3,4,5,6,7,8,9,10,11,12,13],
     datasets: getData("kepala", true)
   };
 
@@ -198,23 +203,23 @@ const ChildDetailPage = () => {
         </Card>
         <h2>Record</h2>
         <Box display="flex" flexDirection="row" flexWrap="wrap" sx={{width: '85vw'}}>
-          <Card sx={{width: '30%', height: 400, marginX: 0.3, padding: '16px'}}>
+          <Card sx={{width: '30%', height: 300, marginX: 0.3, padding: '16px'}}>
             <Typography variant="subtitle1" component="h2">
               Tinggi
             </Typography>
-            <Line data={dummyDataTinggi} />
+            <Line data={dummyDataTinggi} options={{ maintainAspectRatio: false }} />
           </Card>
-          <Card sx={{width: '30%', height: 400, marginX: 0.3, padding: '16px'}}>
+          <Card sx={{width: '30%', height: 300, marginX: 0.3, padding: '16px'}}>
             <Typography variant="subtitle1" component="h2">
               Berat
             </Typography>
-            <Line data={dummyDataBerat} />
+            <Line data={dummyDataBerat} options={{ maintainAspectRatio: false }} />
           </Card>
-          <Card sx={{width: '30%', height: 400, marginX: 0.3, padding: '16px'}}>
+          <Card sx={{width: '30%', height: 300, marginX: 0.3, padding: '16px'}}>
             <Typography variant="subtitle1" component="h2">
               Lingkar Kepala
             </Typography>
-            <Line data={dummyDataKepala} />
+            <Line data={dummyDataKepala} options={{ maintainAspectRatio: false }} />
           </Card>
         </Box>    
         <Card>
