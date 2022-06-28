@@ -76,11 +76,8 @@ const ArticleDetailPage = () => {
                                 </p>
                             </li>
                         </ol>
-                        <p>
-                            Sumber: Kementrian Kesehatan Republik Indonesia<br />
-                            <a href="http://p2ptm.kemkes.go.id/kegiatan-p2ptm/subdit-penyakit-diabetes-melitus-dan-gangguan-metabolik/cegah-stunting-dengan-perbaikan-pola-makan-pola-asuh-dan-sanitasi">http://p2ptm.kemkes.go.id/kegiatan-p2ptm/subdit-penyakit-diabetes-melitus-dan-gangguan-metabolik/cegah-stunting-dengan-perbaikan-pola-makan-pola-asuh-dan-sanitasi</a>
-                        </p>
                     </Grid>
+
                     <Grid 
                         item 
                         xs={6} 
