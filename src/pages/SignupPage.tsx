@@ -14,21 +14,21 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useState} from 'react';
 import { Email } from '@mui/icons-material';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile, UserCredential } from 'firebase/auth';
 import { auth } from '../firebase';
 import { useHistory } from 'react-router-dom';
-import Header from './Header';
-import SignupHooks from './SignupHooks';
+import Header from '../Components/Header';
+import SignupHooks from '../hooks/SignupHooks';
 
 const theme = createTheme();
 
-export default function SignUp(props) {
+export default function SignUp() {
   const history=useHistory()
   const [lastName,setLastName]=useState('')
   const [firstName,setFirstName]=useState('')
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: { preventDefault: () => void; currentTarget: HTMLFormElement | undefined; }) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -36,10 +36,12 @@ export default function SignUp(props) {
       password: data.get('password'),
     });
     createUserWithEmailAndPassword(auth,email,password)
-    .then((authUser)=>{
-      updateProfile(auth.currentUser,{
-        displayName:`${firstName} ${lastName}`
-      })
+    .then((authUser: UserCredential)=>{
+      if (auth.currentUser != null) {
+        updateProfile(auth.currentUser,{
+          displayName:`${firstName} ${lastName}`
+        })
+      }
       console.log(auth.currentUser)
       alert(`hallo ${firstName}${lastName}`)
       history.push('/login')
@@ -66,7 +68,7 @@ export default function SignUp(props) {
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
-            <hr size="3%" width="100%"/>
+            <hr/>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>

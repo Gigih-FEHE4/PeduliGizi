@@ -12,8 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Header from "./Header";
-import LoginHooks from './LoginHooks';
+import Header from "../Components/Header";
+import LoginHooks from '../hooks/LoginHooks';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import {useState} from 'react';
@@ -25,7 +25,7 @@ export default function Login() {
   const history=useHistory()
   const[email,setEmail]=useState('')
   const[password,setPassword]=useState('')
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: { preventDefault: () => void; currentTarget: HTMLFormElement | undefined; }) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -62,7 +62,7 @@ export default function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-            <hr size="3%" width="100%"/>
+            <hr/>
          
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField

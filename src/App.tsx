@@ -9,14 +9,14 @@ import {
 import LandingPage from './pages/LandingPage';
 import ArticleListPage from './pages/ArticleListPage';
 import ArticleDetailPage from './pages/ArticleDetailPage';
-import Login from './Components/Login';
-import Signup from './Components/Signup';
-import DataAnak from './Components/DataAnak';
+import Login from './pages/LoginPage';
+import Signup from './pages/SignupPage';
+import DataAnak from './pages/DataAnakPage';
 import MenuDetailPage from './pages/MenuDetailPage';
 import MenuByTypePage from './pages/MenuByTypePage';
 import ChildDetailPage from './pages/ChildDetailPage';
 import MenuPage from './pages/MenuPage';
-import RecordAnak from './Components/RecordAnak';
+import RecordAnak from './pages/RecordAnakPage';
 import HomePage from './pages/HomePage';
 
 function App() {
