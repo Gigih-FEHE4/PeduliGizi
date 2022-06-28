@@ -10,8 +10,9 @@ import ArticleDetailPage from './pages/ArticleDetailPage';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import MenuDetailPage from './pages/MenuDetailPage';
-import MenuByType from './pages/MenuByType';
+import MenuByTypePage from './pages/MenuByTypePage';
 import DaftarMenu from './pages/DaftarMenu';
+import ChildDetailPage from './pages/ChildDetailPage';
 
 function App() {
     return ( 
@@ -30,8 +31,11 @@ function App() {
                     <Route path="/article">
                         <ArticleListPage />
                     </Route>
+                    <Route path="/child/:id">
+                        <ChildDetailPage />
+                    </Route>
                     <Route path="/menu/type/:type">
-                        <MenuByType />
+                        <MenuByTypePage />
                     </Route>
                     <Route path="/menu/:id">
                         <MenuDetailPage />
