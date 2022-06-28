@@ -13,9 +13,11 @@ import Login from './Components/Login';
 import Signup from './Components/Signup';
 import DataAnak from './Components/DataAnak';
 import MenuDetailPage from './pages/MenuDetailPage';
-import MenuByType from './pages/MenuByType';
+import MenuByTypePage from './pages/MenuByTypePage';
+import ChildDetailPage from './pages/ChildDetailPage';
 import MenuPage from './pages/MenuPage';
 import RecordAnak from './Components/RecordAnak';
+import HomePage from './pages/HomePage';
 
 function App() {
     return ( 
@@ -27,6 +29,9 @@ function App() {
                     </Route>
                     <Route path="/login">
                         <Login />
+                    </Route>
+                    <Route path="/home">
+                        <HomePage />
                     </Route>
                     <Route path="/dataanak">
                         <DataAnak />
@@ -40,13 +45,16 @@ function App() {
                     <Route path="/article">
                         <ArticleListPage />
                     </Route>
+                    <Route path="/child/:id">
+                        <ChildDetailPage />
+                    </Route>
                     <Route path="/menu/type/:type">
-                        <MenuByType />
+                        <MenuByTypePage />
                     </Route>
                     <Route path="/menu/:id">
                         <MenuDetailPage />
                     </Route>
-                    <Route path="/menupage">
+                    <Route path="/menu">
                         <MenuPage />
                     </Route>
                     <Route path="/">
