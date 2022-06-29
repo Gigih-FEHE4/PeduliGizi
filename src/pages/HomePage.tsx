@@ -1,7 +1,9 @@
 import { Box, Card, Container, Grid, Typography } from "@mui/material"
-import { useHistory } from "react-router-dom"
+import { Link,useHistory } from "react-router-dom"
 import Header from "../Components/Header"
 import MenuItem from "../Components/MenuItem"
+import Button from '@mui/material/Button';
+
 
 const HomePage = () => {
     const dummyMenuForBabies = [
@@ -85,8 +87,10 @@ const HomePage = () => {
                         </Typography>
                     </Box>
                 </Box>
+                <Button textAlign="end" href="#/child/add-record" size="small" variant="outlined">Record</Button>
+                <Button href="#/child"  size="small" variant="outlined">Detail</Button>
             </Card>
-
+            
             <Grid container spacing={10}>
                 <Grid item xs={6}>
                     <Typography variant="subtitle1" component="h2">
