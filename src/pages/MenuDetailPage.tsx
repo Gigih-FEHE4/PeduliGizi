@@ -1,21 +1,13 @@
 import Header from '../Components/Header'
 import { Container } from '@mui/material'
 import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { MenuMakanan } from '../model/MenuMakanan'
+import { getDoc, doc } from 'firebase/firestore'
+import { db } from '../firebase'
 
 const MenuDetailPage = () => {
-  const dummyData = {
-    title: "Pure Pisang",
-    bahan: [
-      "Pisang Segar dan matang"
-    ],
-    resep: [
-      "Cuci pisang yang belum dikupas dengan campuran air dan cuka untuk menyingkirkan bakteri,dan keringkan.",
-      "Kupas pisang dan potong kecil-kecil.",
-      "Haluskan pisang dengan food processor.",
-      "Campur pisang dengan air atau ASI hingga mencapai konsistensi yang diinginkan."
-    ],
-    saranTitle: "Tips pemberian MPASI untuk bayi 6 bulan",
-    saran: [
+  const saranList = [
       "Meski bayi sudah diperkenalkan pada makanan padat, pemberian ASI tetap harus berjalan.",
       "Untuk bayi berusia 6 bulan, berikan MPASI sebanyak 2-3 kali sehari dan 1 sampai 2 kali makanan selingan setiap hari.",
       "Berikan 2-3 sendok MPASI dalam sekali makan, sebagai awalan.",
@@ -29,25 +21,64 @@ const MenuDetailPage = () => {
       "Berikan makanan dalam porsi kecil.",
       "Hentikan pemberian makan jika dalam 15 menit anak hanya bermain-main tanpa makan."
     ]
-  }
   const { id } = useParams<{ id: string }>();
+  const [menu, setMenu] = useState<MenuMakanan>()
+
+  const getTitle = (type: string) => {
+    switch (type) {
+      case "sarapan":
+        return "Sarapan Pagi"
+      case "makan-siang":
+        return "Makan Siang"
+      case "makan-malam":
+        return "Makan Malam"
+      case "bb-booster":
+        return "Booster Berat Badan"
+      default:
+        return ""
+    }
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const docSnap = await getDoc(doc(db, "menus", id))
+      const data = docSnap.data() as {
+            title: string,
+            bahan: string[],
+            resep: string[],
+            for: string,
+            type: string,
+            image: string
+        }
+      setMenu({
+          id: docSnap.id,
+          title: data.title,
+          bahan: data.bahan,
+          resep: data.resep,
+          for: data.for,
+          type: data.type,
+          image: data.image
+      })
+    }
+    fetchData()
+  }, [id])
   return (
     <>
       <Header />
         <Container maxWidth="lg">
-          <h1>Sarapan</h1>
-          <img style={{objectFit: 'cover'}} width={930} height={290} src="https://asset.kompas.com/crops/3swuFc9jPQW51QyLDYsJtJ00YIo=/0x0:780x520/750x500/data/photo/2020/07/22/5f17e48c27e8b.jpg" />
-          <h2>{dummyData.title}</h2>
+          <h1>{getTitle(menu?.type ?? "")}</h1>
+          <img style={{objectFit: 'cover'}} width={930} height={290} src={menu?.image} />
+          <h2>{menu?.title}</h2>
           <h3>Bahan-bahan: </h3>
           <ol>
-            { dummyData.bahan.map(bahan => <li>{bahan}</li>) }
+            { menu && menu.bahan.map(bahan => <li>{bahan}</li>) }
           </ol>
           <h3>Resep: </h3><ol>
-            { dummyData.resep.map(resep => <li>{resep}</li>) }
+            { menu && menu.resep.map(resep => <li>{resep}</li>) }
           </ol>
-          <h3>{dummyData.saranTitle}</h3>
+          <h3>Tips pemberian MPASI untuk bayi 6 bulan</h3>
           <ol>
-            { dummyData.saran.map(saran => <li>{saran}</li>) }
+            { saranList.map(saran => <li>{saran}</li>) }
           </ol>
         </Container>
     </>

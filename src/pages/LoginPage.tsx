@@ -12,35 +12,36 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Header from "./Header";
-import LoginHooks from './LoginHooks';
+import Header from "../Components/Header";
+import LoginHooks from '../hooks/LoginHooks';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import {useState} from 'react';
 import { useHistory } from 'react-router-dom';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { useDispatch } from 'react-redux';
+import { setId } from '../store/child-slice';
 
 const theme = createTheme();
 
 export default function Login() {
   const history=useHistory()
+  const dispatch = useDispatch()
   const[email,setEmail]=useState('')
   const[password,setPassword]=useState('')
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    signInWithEmailAndPassword(auth,email,password)
-    .then((userAuth)=>{
-      console.log(userAuth)
+
+    try {
+      const userAuth = await signInWithEmailAndPassword(auth, email, password)
+      const children = await getDocs(query(collection(db, "children"), where("parentId", "==", userAuth.user.uid)))
+      const randChild = children.docs.at(0)
+      dispatch(setId(randChild?.id ?? ""))
       alert('login succes')
-      history.push('/article')
-    })
-    .catch((err)=>{
-      alert(err)
-    })
+      history.push('/home')
+    } catch (error) {
+      alert(error)
+    }
   };
 
   return (
@@ -60,9 +61,9 @@ export default function Login() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Sign in
+            Masuk
           </Typography>
-            <hr size="3%" width="100%"/>
+            <hr/>
          
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -90,10 +91,6 @@ export default function Login() {
               value={password}
               onChange={(e)=>setPassword(e.target.value)}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -103,17 +100,17 @@ export default function Login() {
               boxShadow: "1px 17px 44px rgba(3, 2, 41, 0.07)",
               borderRadius: "40px"}}
             >
-              Sign In
+              Masuk
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  Lupa Password?
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Belum punya akun? Daftar"}
                 </Link>
               </Grid>
             </Grid>
