@@ -1,8 +1,19 @@
 import { Box, Card, Container, Grid, Typography } from "@mui/material"
-import { Link,useHistory } from "react-router-dom"
+import { Link,useHistory, useParams } from "react-router-dom"
 import Header from "../Components/Header"
 import MenuItem from "../Components/MenuItem"
 import Button from '@mui/material/Button';
+import { initializeApp } from "firebase/app";
+import { collection, doc, getDoc, getDocs, limit, query, snapshotEqual, Timestamp } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+import { useEffect } from "react";
+import { useState} from "react";
+import { db } from "../firebase";
+import { Children } from "../model/Children";
+
+
+
+
 
 
 const HomePage = () => {
@@ -49,6 +60,43 @@ const HomePage = () => {
     const handleClick = (id: string) => {
         history.push(`/menu/${id}`)
     }
+    const { id } = useParams<{ id: string }>();
+    const [childrens, setChildrens] = useState<Children[]>([])
+    const [children, setChildren] = useState<Children>()
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const docSnap = await getDoc(doc(db, "children", id))
+            const data = docSnap.data() as {birthDate: Timestamp, gender: string, name: string, parentId: string, weekOfBirth: string}
+            setChildren({
+                id: docSnap.id,
+                birthDate: data.birthDate,
+                gender: data.gender,
+                name: data.name,
+                parentId: data.parentId,
+                weekOfBirth: data.weekOfBirth
+            })
+        }
+        const fetchOtherData = async () => {
+            const acc: Children[] = []
+            const querySnapshot = await getDocs(query(collection(db, "children"), limit(3)));
+            querySnapshot.forEach((doc) => {
+                const data = doc.data() as {birthDate: Timestamp, gender: string, name: string, parentId: string, weekOfBirth: string}
+                acc.push({
+                    id: doc.id,
+                    birthDate: data.birthDate,
+                    gender: data.gender,
+                    name: data.name,
+                    parentId: data.parentId,
+                    weekOfBirth: data.weekOfBirth
+                })
+            });
+            setChildrens(acc)
+        }
+        fetchData()
+        fetchOtherData()
+    }, [id])
 
   return (
     <>
@@ -87,8 +135,10 @@ const HomePage = () => {
                         </Typography>
                     </Box>
                 </Box>
-                <Button textAlign="end" href="#/child/add-record" size="small" variant="outlined">Record</Button>
-                <Button href="#/child"  size="small" variant="outlined">Detail</Button>
+                <div className="buttonRight">
+                <Button  href="#/child/add-record" size="small" variant="outlined">Record</Button>
+                <Button  href="#/child/1"  size="small" variant="outlined">Detail</Button>
+                </div>
             </Card>
             
             <Grid container spacing={10}>

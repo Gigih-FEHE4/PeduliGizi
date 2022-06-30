@@ -101,8 +101,12 @@ const ChildDetailPage = () => {
           plus1: HEAD_BOYS_SD1,
           plus2: HEAD_BOYS_SD2
         })
+      
+        default:
+          break;
     }
   }
+  
 
   const getDataFemale = (type) => {
     switch (type) {
@@ -132,6 +136,9 @@ const ChildDetailPage = () => {
           plus1: HEAD_GIRLS_SD1,
           plus2: HEAD_GIRLS_SD2
         })
+      
+      default:
+        break;
     }
   }
 

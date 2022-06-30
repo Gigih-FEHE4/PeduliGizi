@@ -316,3 +316,9 @@ line-height: 33px;
 color: #0C3A2D;
 
 }
+.buttonRight{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 10px;
+}
