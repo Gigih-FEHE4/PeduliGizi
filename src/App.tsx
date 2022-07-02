@@ -18,12 +18,16 @@ import ChildDetailPage from './pages/ChildDetailPage';
 import MenuPage from './pages/MenuPage';
 import AddRecordPage from './pages/AddRecordPage';
 import HomePage from './pages/HomePage';
+import Forgotpassword from './Components/Forgotpassword';
 
 function App() {
     return ( 
         <div className='App'>
             <Router>
                 <Switch>
+                    <Route path="/forgotpassword">
+                        <Forgotpassword />
+                    </Route>
                     <Route path="/signup">
                         <Signup />
                     </Route>

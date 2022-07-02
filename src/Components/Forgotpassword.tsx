@@ -13,7 +13,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from "./Header";
-import LoginHooks from '../hooks/LoginHooks';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../firebase';
 import {useState} from 'react';
@@ -88,7 +87,6 @@ export default function Forgotpassword() {
           </Box>
         </Box>
       </Container>
-      <LoginHooks />
     </ThemeProvider>
   );
 }
