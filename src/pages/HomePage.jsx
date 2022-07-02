@@ -9,7 +9,7 @@ import { getFirestore } from "firebase/firestore";
 import { useEffect } from "react";
 import { useState} from "react";
 import { db } from "../firebase";
-import { Children } from "../model/Children";
+import { useSelector } from "react-redux";
 
 
 
@@ -57,58 +57,39 @@ const HomePage = () => {
       ]
 
     const history = useHistory()
-    const handleClick = (id: string) => {
+    const handleClick = (id) => {
         history.push(`/menu/${id}`)
     }
-    const { id } = useParams<{ id: string }>();
-    const [childrens, setChildrens] = useState<Children[]>([])
-    const [children, setChildren] = useState<Children>()
+    const id = useSelector((state) => state.id)
+    const [child, setChild] = useState({})
+    const [record,setRecord] = useState([])
 
 
     useEffect(() => {
-        const fetchData = async () => {
-            const docSnap = await getDoc(doc(db, "children", id))
-            const data = docSnap.data() as {birthDate: Timestamp, gender: string, name: string, parentId: string, weekOfBirth: string}
-            setChildren({
+        const fetchChildData = async () => {
+          const docSnap = await getDoc(doc(db, "children", id));
+           
+            setChild({
                 id: docSnap.id,
-                birthDate: data.birthDate,
-                gender: data.gender,
-                name: data.name,
-                parentId: data.parentId,
-                weekOfBirth: data.weekOfBirth
+                birthDate: docSnap.data().birthDate.toDate().toLocaleString('en-US'),
+                gender: docSnap.data().gender,
+                name:  docSnap.data().name,
+                parentId:  docSnap.data().parentId,
+                weekOfBirth:  docSnap.data().weekOfBirth,
             })
         }
-        const fetchOtherData = async () => {
-            const acc: Children[] = []
-            const querySnapshot = await getDocs(query(collection(db, "children"), limit(3)));
-            querySnapshot.forEach((doc) => {
-                const data = doc.data() as {birthDate: Timestamp, gender: string, name: string, parentId: string, weekOfBirth: string}
-                acc.push({
-                    id: doc.id,
-                    birthDate: data.birthDate,
-                    gender: data.gender,
-                    name: data.name,
-                    parentId: data.parentId,
-                    weekOfBirth: data.weekOfBirth
-                })
-            });
-            setChildrens(acc)
-        }
-        fetchData()
-        fetchOtherData()
-    }, [id])
+        fetchChildData()
+    }, [id, child])
+   
 
   return (
+      
     <>
         <Header />
         <Container maxWidth="lg">
             <Card>
-                <Typography variant="h5" component="h1">
-                    Nama Anak
-                </Typography>
-                <Typography variant="h6" component="p">
-                    Usia
-                </Typography>
+                <p>Nama: <b>{child?.name}</b></p>
+                <p>Jenis Kelamin: <b>{child?.gender}</b></p>
                 <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center" alignItems="center">
                     <Box flexGrow={1} textAlign="center">
                         <Typography variant="subtitle1" component="h2">

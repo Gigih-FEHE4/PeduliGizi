@@ -47,7 +47,7 @@ import {
 } from 'chart.js';
 import { useSelector } from "react-redux";
 import { getDocs, collection, getDoc, doc } from "firebase/firestore";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Children } from "react";
 import { db } from "../firebase"
 
 ChartJS.register(
@@ -263,6 +263,7 @@ const ChildDetailPage = () => {
         gender: docSnap.data().gender,
         birthDate: docSnap.data().birthDate.toDate()
       })
+      console.log(docSnap)
     }
     const fetchRecordData = async () => {
         const acc = []
