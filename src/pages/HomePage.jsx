@@ -1,7 +1,20 @@
 import { Box, Card, Container, Grid, Typography } from "@mui/material"
-import { useHistory } from "react-router-dom"
+import { Link,useHistory, useParams } from "react-router-dom"
 import Header from "../Components/Header"
 import MenuItem from "../Components/MenuItem"
+import Button from '@mui/material/Button';
+import { initializeApp } from "firebase/app";
+import { collection, doc, getDoc, getDocs, limit, query, snapshotEqual, Timestamp } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+import { useEffect } from "react";
+import { useState} from "react";
+import { db } from "../firebase";
+import { useSelector } from "react-redux";
+
+
+
+
+
 
 const HomePage = () => {
     const dummyMenuForBabies = [
@@ -44,21 +57,39 @@ const HomePage = () => {
       ]
 
     const history = useHistory()
-    const handleClick = (id: string) => {
+    const handleClick = (id) => {
         history.push(`/menu/${id}`)
     }
+    const id = useSelector((state) => state.id)
+    const [child, setChild] = useState({})
+    const [record,setRecord] = useState([])
+
+
+    useEffect(() => {
+        const fetchChildData = async () => {
+          const docSnap = await getDoc(doc(db, "children", id));
+           
+            setChild({
+                id: docSnap.id,
+                birthDate: docSnap.data().birthDate.toDate().toLocaleString('en-US'),
+                gender: docSnap.data().gender,
+                name:  docSnap.data().name,
+                parentId:  docSnap.data().parentId,
+                weekOfBirth:  docSnap.data().weekOfBirth,
+            })
+        }
+        fetchChildData()
+    }, [id, child])
+   
 
   return (
+      
     <>
         <Header />
         <Container maxWidth="lg">
             <Card>
-                <Typography variant="h5" component="h1">
-                    Nama Anak
-                </Typography>
-                <Typography variant="h6" component="p">
-                    Usia
-                </Typography>
+                <p>Nama: <b>{child?.name}</b></p>
+                <p>Jenis Kelamin: <b>{child?.gender}</b></p>
                 <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center" alignItems="center">
                     <Box flexGrow={1} textAlign="center">
                         <Typography variant="subtitle1" component="h2">
@@ -85,8 +116,12 @@ const HomePage = () => {
                         </Typography>
                     </Box>
                 </Box>
+                <div className="buttonRight">
+                <Button  href="#/child/add-record" size="small" variant="outlined">Record</Button>
+                <Button  href="#/child/1"  size="small" variant="outlined">Detail</Button>
+                </div>
             </Card>
-
+            
             <Grid container spacing={10}>
                 <Grid item xs={6}>
                     <Typography variant="subtitle1" component="h2">

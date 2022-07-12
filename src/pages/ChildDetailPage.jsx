@@ -47,7 +47,7 @@ import {
 } from 'chart.js';
 import { useSelector } from "react-redux";
 import { getDocs, collection, getDoc, doc } from "firebase/firestore";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Children } from "react";
 import { db } from "../firebase"
 
 ChartJS.register(
@@ -101,8 +101,12 @@ const ChildDetailPage = () => {
           plus1: HEAD_BOYS_SD1,
           plus2: HEAD_BOYS_SD2
         })
+      
+        default:
+          break;
     }
   }
+  
 
   const getDataFemale = (type) => {
     switch (type) {
@@ -132,6 +136,9 @@ const ChildDetailPage = () => {
           plus1: HEAD_GIRLS_SD1,
           plus2: HEAD_GIRLS_SD2
         })
+      
+      default:
+        break;
     }
   }
 
@@ -256,6 +263,7 @@ const ChildDetailPage = () => {
         gender: docSnap.data().gender,
         birthDate: docSnap.data().birthDate.toDate()
       })
+      console.log(docSnap)
     }
     const fetchRecordData = async () => {
         const acc = []

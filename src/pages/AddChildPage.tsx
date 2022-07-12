@@ -38,7 +38,7 @@ const AddChildPage = () => {
             birthDate: birthDate,
             gender: gender,
             weekOfBirth: data.get('weekOfBirth'),
-            parentId: auth.currentUser?.uid
+            parentId: +new Date()
         });
 
         dispatch(setId(docRef.id))
